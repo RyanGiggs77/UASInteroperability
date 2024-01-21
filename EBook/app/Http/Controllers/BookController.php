@@ -11,14 +11,21 @@ class BookController extends Controller
 {
     public function index()
     {
-        $book = Book::OrderBy("id", "DESC")->paginate(3)->toArray();
+        $book = Book::with('categories')->orderBy("id", "DESC")->paginate(3)->toArray();
 
-        $output = [
-            'message' => 'book',
-            'results' => $book
+        $response = [
+            "total_count" => $book["total"],
+            "limit" => $book["per_page"],
+            "paginate" => [
+                "next_page" => $book["next_page_url"],
+                "current_page" => $book["current_page"],
+                "prev_page_url" => $book["prev_page_url"],
+            ],
+            "data" => $book["data"],
         ];
 
-        return response()->json($output,200);
+
+        return response()->json($response,200);
     }
 
     public function show($id)
@@ -39,10 +46,19 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        $input = $request->all();
-        $book = Book::create($input);
+        
+        $book = Book::create([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'deskripsi' => $request->deskripsi,
+            'tahun_terbit' => $request->tahun_terbit,
+        ]);
+
+        $book->categories()->attach($request->categories);
 
         return response()->json($book, 200);
+
     }
 
     public function update(Request $request, $id)
@@ -55,6 +71,7 @@ class BookController extends Controller
     public function destroy($id)
     {
         Book::find($id)->delete();
-        return response()->json(['message'=>'Book has been deleted','Book_id'=>'$id' ], 200);
+        return response()->json(['message'=>'Book has been deleted','Book_id'=>$id ], 200);
     }
+
 }

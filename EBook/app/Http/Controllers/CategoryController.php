@@ -11,14 +11,21 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $category = Category::OrderBy("id", "DESC")->paginate(3)->toArray();
+        $category = Category::with('books')->OrderBy("id", "ASC")->paginate(10)->toArray();
 
-        $output = [
-            'message' => 'category',
-            'results' => $category
+        $response = [
+            "total_count" => $category["total"],
+            "limit" => $category["per_page"],
+            "paginate" => [
+                "next_page" => $category["next_page_url"],
+                "current_page" => $category["current_page"],
+                "prev_page_url" => $category["prev_page_url"],
+            ],
+            "data" => $category["data"],
         ];
+    
 
-        return response()->json($output,200);
+        return response()->json($response,200);
     }
 
     public function show($id)

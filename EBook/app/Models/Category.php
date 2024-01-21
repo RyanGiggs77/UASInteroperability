@@ -19,8 +19,13 @@ class Category extends Model
      * @var string[]
      */
     protected $fillable = [
-        'id', 'nama_category',
+        'id', 'nama_categori',
     ];
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class, 'book_category','categories_id','books_id');
+    }
 
     
 
@@ -37,9 +42,9 @@ class Category extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
    */
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\Models\User');
+    // }
 
 }

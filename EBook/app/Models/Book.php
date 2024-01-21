@@ -19,9 +19,13 @@ class Book extends Model
      * @var string[]
      */
     protected $fillable = [
-        'id', 'judul','penulis','deskripsi','tahun_terbit','kategori_id'
+        'id', 'judul','penulis','deskripsi','tahun_terbit'
     ];
 
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'book_category','books_id','categories_id');
+    }
     
 
     /**
@@ -37,13 +41,10 @@ class Book extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
    */
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo('App\Models\User');
+    // }
 
-    public function getCategoryId()
-    {
-        return $this->kategori_id;
-    }
+
 }

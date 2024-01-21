@@ -17,10 +17,9 @@ return new class extends Migration
             $table->string('penulis');
             $table->string('deskripsi');
             $table->integer('tahun_terbit');
-            $table->unsignedInteger('categories_id');
             $table->timestamps();
 
-            $table->foreign('categories_id')->references('id')->on('categories')->onDelete('cascade');
+            
         });
     }
 
