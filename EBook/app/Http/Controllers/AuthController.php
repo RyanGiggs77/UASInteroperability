@@ -30,7 +30,7 @@ class AuthController extends Controller
 
         
         $validationRules = [
-            'nama_pengguna'     => 'required|string',
+            'nama_pengguna' => 'required|string',
             'email'    => 'required|email|unique:users',
             'password' => 'required|confirmed',
         ];
@@ -46,9 +46,9 @@ class AuthController extends Controller
         }
 
         $user = new User;
-        $user->nama_pengguna = $request->
-            input('nama_pengguna');
+        $user->nama_pengguna = $request->input('nama_pengguna');
         $user->email = $request->input('email');
+        $user->peran = $request->input('peran');
         $plainPassword = $request->input('password');
         $user->password = app('hash')->make($plainPassword);
 
