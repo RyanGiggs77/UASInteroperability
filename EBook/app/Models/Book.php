@@ -19,7 +19,7 @@ class Book extends Model
      * @var string[]
      */
     protected $fillable = [
-        'id', 'judul','penulis','deskripsi','tahun_teribt','kategori_id'
+        'id', 'judul','penulis','deskripsi','tahun_terbit','kategori_id'
     ];
 
     
