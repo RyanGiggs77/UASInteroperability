@@ -12,6 +12,7 @@ class BookReviewController extends Controller
         return BookReview::all();
 
     }
+    
 
     public function show($id)
     {

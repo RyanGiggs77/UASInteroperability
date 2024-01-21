@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-class Book extends Model 
+class Category extends Model 
 {
     use Authenticatable, Authorizable, HasFactory;
 

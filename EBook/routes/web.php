@@ -27,3 +27,17 @@ $router->get('/book-reviews/{id}', 'BookReviewController@show');
 $router->post('/book-reviews', 'BookReviewController@store');
 $router->put('/book-reviews/{id}', 'BookReviewController@update');
 $router->delete('/book-reviews/{id}', 'BookReviewController@destroy');
+
+//Book
+$router->get('/book', 'BookController@index');
+$router->get('/book/{id}', 'BookController@show');
+$router->post('/book', 'BookController@store');
+$router->put('/book/{id}', 'BookController@update');
+$router->delete('/book/{id}', 'BookController@destroy');
+
+//Category
+$router->get('/category', 'CategoryController@index');
+$router->get('/category/{id}', 'CategoryController@show');
+$router->post('/category', 'CategoryController@store');
+$router->put('/category/{id}', 'CategoryController@update');
+$router->delete('/category/{id}', 'CategoryController@destroy');
