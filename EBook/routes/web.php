@@ -20,3 +20,10 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'auth'], function () use ($router) {
     $router->post('/register', 'AuthController@register');
 });
+
+//Book Review (nanti di wrap sama auth)
+$router->get('/book-reviews', 'BookReviewController@index');
+$router->get('/book-reviews/{id}', 'BookReviewController@show');
+$router->post('/book-reviews', 'BookReviewController@store');
+$router->put('/book-reviews/{id}', 'BookReviewController@update');
+$router->delete('/book-reviews/{id}', 'BookReviewController@destroy');
